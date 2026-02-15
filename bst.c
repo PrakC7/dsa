@@ -36,11 +36,17 @@ int BST_height(struct Node* root){
     return (lh > rh ? lh : rh) + 1;
 }
 
-int count_nodes(struct Node* root){
-    if(root == NULL){
+int isAVL(struct Node* root){
+    if(root == NULL)
+        return 1;
+
+    int lh = BST_height(root->left);
+    int rh = BST_height(root->right);
+
+    if(abs(lh - rh) > 1)
         return 0;
-    }
-    return 1 + count_nodes(root->left) + count_nodes(root->right);
+
+    return isAVL(root->left) && isAVL(root->right);
 }
 
 void Inorder(struct Node* root){
@@ -52,17 +58,33 @@ void Inorder(struct Node* root){
     Inorder(root->right);
 }
 
+int count_nodes(struct Node* root){
+    if(root == NULL){
+        return 0;
+    }
+    return 1 + count_nodes(root->left) + count_nodes(root->right);
+}
+
 int main(){
     struct Node* root = NULL;
     int data;
+
     printf("Enter the 5 values:\n");
     for(int i = 0; i < 5; i++){
         scanf("%d", &data);
         root = BST(root, data);
     }
+
     printf("\nBST Inorder value is:\n");
     Inorder(root);
+
     printf("\nBST height value is: %d", BST_height(root));
     printf("\nNumber of Nodes in BST: %d", count_nodes(root));
+
+    if(isAVL(root))
+        printf("\nTree is an AVL Tree");
+    else
+        printf("\nTree is NOT an AVL Tree");
+
     return 0;
 }
