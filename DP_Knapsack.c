@@ -9,7 +9,7 @@ int Knapsack(int item, int capacity,
              int profit[], int weight[]) {
     if (item == 0 || capacity == 0)
         return 0;
-    if (table[item][capacity] != -1) //not included
+    if (table[item][capacity] != -1) //not included(Recursion not working properly as it does not return any value)
         return table[item][capacity]; 
     if (weight[item] > capacity) {
         table[item][capacity] =
