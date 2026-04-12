@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node{int v;struct Node* next;};
+struct Node* adj[5];
+
+void add(int u,int v){
+    struct Node* n=malloc(sizeof(struct Node));
+    n->v=v;n->next=adj[u];
+    adj[u]=n;
+}
+
+int main(){
+    add(0,1);add(0,2);
+    struct Node* t=adj[0];
+    while(t){printf("%d ",t->v);t=t->next;}
+}
