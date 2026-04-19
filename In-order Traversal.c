@@ -17,8 +17,24 @@ void inorder(struct Node* r){
 }
 
 int main(){
-    struct Node* r=create(1);
-    r->left=create(2);
-    r->right=create(3);
+    int arr[10];
+    struct Node* nodes[10];
+
+    printf("Enter 10 digits:\n");
+    for(int i=0;i<10;i++){
+        scanf("%d",&arr[i]);
+        nodes[i]=create(arr[i]);
+    }
+
+    for(int i=0;i<10;i++){
+        int left=2*i+1;
+        int right=2*i+2;
+
+        if(left<10) nodes[i]->left=nodes[left];
+        if(right<10) nodes[i]->right=nodes[right];
+    }
+
+    struct Node* r=nodes[0];
+
     inorder(r);
 }
