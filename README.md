@@ -96,7 +96,7 @@ All programs are written with a focus on **clarity, correctness, and structured 
 2. Navigate to the folder
 
    ```bash
-   cd your-repo-name
+   cd dsa
    ```
 
 3. Compile any program
